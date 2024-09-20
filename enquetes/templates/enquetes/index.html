@@ -1,26 +1,21 @@
-{% load static %}
 <html>
     <head>
-        <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
         <title>App Enquetes</title>
     </head>
     <body>
         <h1>Aplicação de Enquetes - DSWeb 2024.1</h1>
-        {% if pergunta_list %}
-          <h3>Lista das Enquetes Cadastradas:</h3>
-          <ul>
-            {% for p in pergunta_list %}
-              <li>
-                <a href="{% url 'enquetes:detalhes' p.id %}">
-                  {{ p.texto }}
-                </a>&nbsp;&nbsp;
-                (<a href="{% url 'enquetes:resultado' p.id %}">ver parcial
-                </a>)
-              </li>
+        {% if lista_enquetes %}
+        <h3>Lista das Enquetes Cadastradas:</h3>
+        <ul>
+            {% for p in lista_enquetes %}
+            <li><a href="/enquetes/{{ p.id }}/">
+                {{ p.texto }}
+            </a>
+            </li>
             {% endfor %}
-          </ul>
+        </ul>
         {% else %}
-          <h3>Nenhuma enquete cadastrada até o momento!</h3>
+            <h3>Nenhuma enquete cadastrada até o momento.</h3>
         {% endif %}
     </body>
 </html>
